@@ -1,17 +1,49 @@
-// components/LoginPage.js
-
-import React, { useState } from "react";
+import React, { useReducer } from "react";
 import pagePic from "../img/illustration1.svg";
 import LoginForm from "./LoginForm";
 
+const initialState = {
+  showPass: true,
+  validPass: "",
+  validEmail: "",
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "TOGGLE_PASSWORD":
+      return {
+        ...state,
+        showPass: !state.showPass,
+      };
+    case "SET_VALID_PASS":
+      return {
+        ...state,
+        validPass: action.payload,
+      };
+    case "SET_VALID_EMAIL":
+      return {
+        ...state,
+        validEmail: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
 const LoginPage = () => {
-  const [showPass, setShowPass] = useState(true);
-  const [validPass, setValidPass] = useState("");
-  const [validEmail, setValidEmail] = useState("");
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleToggle = (e) => {
     e.preventDefault();
-    setShowPass((prevPass) => !prevPass);
+    dispatch({ type: "TOGGLE_PASSWORD" });
+  };
+
+  const setValidPass = (value) => {
+    dispatch({ type: "SET_VALID_PASS", payload: value });
+  };
+
+  const setValidEmail = (value) => {
+    dispatch({ type: "SET_VALID_EMAIL", payload: value });
   };
 
   return (
@@ -30,9 +62,9 @@ const LoginPage = () => {
         </p>
       </div>
       <LoginForm
-        showPass={showPass}
-        validPass={validPass}
-        validEmail={validEmail}
+        showPass={state.showPass}
+        validPass={state.validPass}
+        validEmail={state.validEmail}
         setValidPass={setValidPass}
         setValidEmail={setValidEmail}
         handleToggle={handleToggle}
