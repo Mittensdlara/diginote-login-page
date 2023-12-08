@@ -11,7 +11,7 @@ const PasswordInput = ({ showPass, validPass, setValidPass, handleToggle }) => {
             className={
               validPass.length > 8
                 ? "relative mb-2 border text-gray border-gray text-sm  font-medium rounded-md w-full py-3 pl-4  bg-light-bg  focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1"
-                : "relative mb-2 border text-gray  text-sm  font-medium rounded-md w-full py-3 pl-4  bg-light-bg  focus:outline-none focus:border-red-500 focus:ring-red-500 focus:ring-1"
+                : "relative mb-2 border text-gray  text-sm  font-medium rounded-md w-full py-3 pl-4  bg-light-bg border-red-500  focus:outline-none focus:border-red-500 focus:ring-red-500 focus:ring-1"
             }
             type={showPass ? "password" : "text"}
             name="password"
