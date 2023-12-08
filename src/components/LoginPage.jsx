@@ -4,8 +4,8 @@ import LoginForm from "./LoginForm";
 
 const initialState = {
   showPass: true,
-  validPass: "",
-  validEmail: "",
+  validPass: "•••••••••",
+  validEmail: "John@doe.com",
 };
 
 const reducer = (state, action) => {
